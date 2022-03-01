@@ -139,11 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="RocketEngine.cpp" />
     <ClCompile Include="RocketMain.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rocket.h" />
+    <ClInclude Include="RocketEngine.h" />
     <ClInclude Include="RocketMain.h" />
     <ClInclude Include="Source.h" />
   </ItemGroup>
