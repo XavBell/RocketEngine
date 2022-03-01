@@ -12,6 +12,10 @@ public:
 	float tankFuelVolume = 0.0f;
 	float tankMat = 0.0f;
 	float tankWeight = 0.0f;
+	int tankN = 0;
+
+	double tankWeights[10];
+	double tankFuelVolumes[10];
 
 
 	string setName() {
@@ -64,4 +68,5 @@ public:
 		tWeight = tVolume * tMaterial;
 		return tWeight;
 	}
+
 };
