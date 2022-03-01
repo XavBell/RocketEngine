@@ -1,11 +1,16 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
 #include "Source.h"
 #include "RocketMain.cpp"
 #include "RocketEngine.cpp"
+
+
 using namespace std;
 
 int main() {
+
     string request;
     RocketMain rocket;
     while(request != "close") {

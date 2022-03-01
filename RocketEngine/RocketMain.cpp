@@ -42,9 +42,7 @@ public:
 		double tankEmptyVolume;
 		double pi = 2 * acos(0.0);
 		float outerVolume = pi * pow(tOradius, 2) * theight;
-		cout << outerVolume << endl;
 		float innerVolume = pi * pow(tIradius, 2) * theight;
-		cout << innerVolume << endl;
 		tankEmptyVolume = outerVolume-innerVolume;
 		return tankEmptyVolume;
 	}
