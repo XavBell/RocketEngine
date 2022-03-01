@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Source.h"
 #include "RocketMain.cpp"
 #include "RocketEngine.cpp"
@@ -62,7 +63,7 @@ int main() {
 
         if (request == "checkRocket") {
                 while(request != "back") {
-                    cout << "Enter one of those commands or type back: getTankInfo" << endl;
+                    cout << "Enter one of those commands or type back: getTankInfo, save" << endl;
                     cin >> request;
                     if(request == "getTankInfo") {
                         int tankCheck;
@@ -75,7 +76,22 @@ int main() {
                         cout << "Tank volume for fuel of this tank is: ";
                         cout << rocket.tankFuelVolumes[i]<<endl;
                     }
-                    
+
+                    if(request == "save") {
+                        string filename;
+                        cout << "Enter a filename" << endl;
+                        cin >> filename;
+                        filename = filename + ".txt";
+                        ofstream file;
+                        file.open(filename);
+                        if (file.is_open()) {
+                            file << rocket.tankN;
+                            file.close();
+                            cout << "File writed successfully" << endl;
+                        }
+                        else cout << "Can't open file!" << endl;
+
+                    }
                 }
             }
 
