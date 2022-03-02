@@ -3,6 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <windows.h>
+#include <tchar.h>
+#include <conio.h>
+#include <strsafe.h>
 #include "Source.h"
 #include "RocketMain.cpp"
 #include "RocketEngine.cpp"
@@ -11,6 +15,26 @@
 using namespace std;
 
 int main() {
+
+    TCHAR szOldTitle[MAX_PATH];
+    TCHAR szNewTitle[MAX_PATH];
+
+
+    if (GetConsoleTitle(szOldTitle, MAX_PATH))
+    {
+        // Build new console title string.
+
+        StringCchPrintf(szNewTitle, MAX_PATH, TEXT("RocketEngine"), szOldTitle);
+
+        // Set console title to new title
+        if (!SetConsoleTitle(szNewTitle))
+        {
+            _tprintf(TEXT("SetConsoleTitle failed (%d)\n"), GetLastError());
+            return 1;
+        }
+    }
+
+
 
     string request;
     RocketMain rocket;
@@ -60,6 +84,9 @@ int main() {
 
                 int i = rocket.tankN - 1;
                 rocket.tankWeights[i] = rocket.tankWeight;
+                rocket.tankHeights[i] = rocket.tankHeight;
+                rocket.tankInnerRadiuses[i] = rocket.tankInnerRadius;
+                rocket.tankOuterRadiuses[i] = rocket.tankOuterRadius;
                 rocket.tankFuelVolumes[i] = rocket.tankFuelVolume;
                 i = 0;
                 }
@@ -69,7 +96,7 @@ int main() {
 
         if (request == "checkRocket") {
                 while(request != "back") {
-                    cout << "Enter one of those commands or type back: getTankInfo, save" << endl;
+                    cout << "Enter one of those commands or type back: getTankInfo, save, load" << endl;
                     cin >> request;
                     if(request == "getTankInfo") {
                         int tankCheck;
@@ -79,6 +106,12 @@ int main() {
                         int i = tankCheck - 1;
                         cout << "Tank weight without fuel of this tank is: ";
                         cout << rocket.tankWeights[i]<<endl;
+                        cout << "Tank height of this tank is: ";
+                        cout << rocket.tankHeights[i] << endl;
+                        cout << "Tank inner radius of this tank is: ";
+                        cout << rocket.tankInnerRadiuses[i] << endl;
+                        cout << "Tank outer radius of this tank is: ";
+                        cout << rocket.tankOuterRadiuses[i] << endl;
                         cout << "Tank volume for fuel of this tank is: ";
                         cout << rocket.tankFuelVolumes[i]<<endl;
                     }
@@ -87,10 +120,9 @@ int main() {
                         string filename;
                         cout << "Enter a filename" << endl;
                         cin >> filename;
-                        filename = filename + ".txt";
+                        filename = filename + "data.txt";
                         ofstream file_obj;
 
-                        // Opening file in append mode
                         file_obj.open(filename, ios::app);
                        
                         if(file_obj.is_open()) {
@@ -106,7 +138,7 @@ int main() {
                         string filename;
                         cout << "Enter a filename" << endl;
                         cin >> filename;
-                        filename = filename + ".txt";
+                        filename = filename + "data.txt";
                         ifstream file_obj;
                         file_obj.open(filename, ios::in);
                         if(file_obj.is_open()) {
@@ -121,5 +153,7 @@ int main() {
             }
 
         }
+        cout << "Closing safely" << endl;
+        return 0;
     
 }

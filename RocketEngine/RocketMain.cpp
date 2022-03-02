@@ -15,6 +15,9 @@ public:
 	int tankN = 0;
 
 	double tankWeights[10];
+	double tankHeights[10];
+	double tankInnerRadiuses[10];
+	double tankOuterRadiuses[10];
 	double tankFuelVolumes[10];
 
 
