@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Source.h"
 #include "RocketMain.cpp"
 #include "RocketEngine.cpp"
@@ -87,15 +88,34 @@ int main() {
                         cout << "Enter a filename" << endl;
                         cin >> filename;
                         filename = filename + ".txt";
-                        ofstream file;
-                        file.open(filename);
-                        if (file.is_open()) {
-                            file << rocket.tankN;
-                            file.close();
-                            cout << "File writed successfully" << endl;
+                        ofstream file_obj;
+
+                        // Opening file in append mode
+                        file_obj.open(filename, ios::app);
+                       
+                        if(file_obj.is_open()) {
+                           file_obj.write((char*)&rocket, sizeof(RocketMain));
+                           cout << "File writed successfully" << endl;
+                           file_obj.close();
                         }
                         else cout << "Can't open file!" << endl;
 
+                    }
+
+                    if(request == "load") {
+                        string filename;
+                        cout << "Enter a filename" << endl;
+                        cin >> filename;
+                        filename = filename + ".txt";
+                        ifstream file_obj;
+                        file_obj.open(filename, ios::in);
+                        if(file_obj.is_open()) {
+                            while (!file_obj.eof()) {
+                                cout << "Opened" << endl;
+                                file_obj.read((char*)&rocket, sizeof(RocketMain));
+                            }
+                        }
+                    
                     }
                 }
             }
