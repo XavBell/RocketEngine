@@ -9,7 +9,6 @@
 #include <strsafe.h>
 #include "Source.h"
 #include "RocketMain.cpp"
-#include "RocketEngine.cpp"
 
 
 using namespace std;
@@ -49,7 +48,7 @@ int main() {
                 cin >> request;
                 if(request == "addTank") {
 
-                //First tank
+                //Tank
                 rocket.tankN = rocket.tankN + 1;
 
                 rocket.tankHeight = rocket.setTankHeight();
@@ -70,9 +69,9 @@ int main() {
                 cout << "Your tank volume without fuel is: ";
                 cout << rocket.tankEmptyVolume << endl;
 
-                rocket.tankFuelVolume = rocket.tankFuelVolumeFunc(rocket.tankOuterRadius, rocket.tankInnerRadius, rocket.tankHeight);
-                cout << "Your tank volume for fuel is: ";
-                cout << rocket.tankFuelVolume << endl;
+                rocket.tankPropellantVolume = rocket.tankPropellantVolumeFunc(rocket.tankOuterRadius, rocket.tankInnerRadius, rocket.tankHeight);
+                cout << "Your tank volume for propellant/oxidizer is: ";
+                cout << rocket.tankPropellantVolume << endl;
 
                 rocket.tankMat = rocket.setMat();
                 cout << "Your tank material mass is: ";
@@ -82,13 +81,31 @@ int main() {
                 cout << "Your tank weight is: ";
                 cout << rocket.tankWeight << endl;
 
+                rocket.tankFuelVolume = rocket.tankFuelVolumeFunc(rocket.tankPropellantVolume);
+                cout << "Set" << endl;
+
+                rocket.tankOxidizerVolume = rocket.tankOxidizerVolumeFunc(rocket.tankPropellantVolume, rocket.tankFuelVolume);
+                cout << "Set" << endl;
+
+                rocket.fuelChoice = rocket.fuelChoiceFunc();
+                cout << "Set" << endl;
+
+                rocket.oxidizerChoice = rocket.oxidizerChoiceFunc();
+                cout << "Set" << endl;
+                
+
                 int i = rocket.tankN - 1;
                 rocket.tankWeights[i] = rocket.tankWeight;
                 rocket.tankHeights[i] = rocket.tankHeight;
                 rocket.tankInnerRadiuses[i] = rocket.tankInnerRadius;
                 rocket.tankOuterRadiuses[i] = rocket.tankOuterRadius;
+                rocket.tankPropellantVolumes[i] = rocket.tankPropellantVolume;
                 rocket.tankFuelVolumes[i] = rocket.tankFuelVolume;
+                rocket.tankOxidizerVolumes[i] = rocket.tankOxidizerVolume;
+                rocket.tankFuelChoices[i] = rocket.fuelChoice;
+                rocket.tankOxidizerChoices[i] = rocket.oxidizerChoice;
                 i = 0;
+                
                 }
 
             }
@@ -112,8 +129,8 @@ int main() {
                         cout << rocket.tankInnerRadiuses[i] << endl;
                         cout << "Tank outer radius of this tank is: ";
                         cout << rocket.tankOuterRadiuses[i] << endl;
-                        cout << "Tank volume for fuel of this tank is: ";
-                        cout << rocket.tankFuelVolumes[i]<<endl;
+                        cout << "Tank volume for propellant of this tank is: ";
+                        cout << rocket.tankPropellantVolumes[i]<<endl;
                     }
 
                     if(request == "save") {

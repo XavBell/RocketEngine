@@ -151,6 +151,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FuelOxidizer.h" />
     <ClInclude Include="RocketEngine.h" />
     <ClInclude Include="RocketMain.h" />
     <ClInclude Include="Source.h" />
