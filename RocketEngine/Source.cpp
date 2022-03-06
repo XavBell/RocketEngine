@@ -104,9 +104,16 @@ int main() {
                 rocket.nheight = rocket.nozzleHeight();
                 rocket.theight = rocket.throatHeight();
                 rocket.eMass = rocket.engineMass(rocket.oradius, rocket.iradius, rocket.ofradius, rocket.ifradius, rocket.osradius, rocket.isradius, rocket.nheight, rocket.cheight);
+                
+                cout << rocket.eMass << endl;
+
                 rocket.flowRate = rocket.flowRateFunc(rocket.ifradius, rocket.iradius, rocket.theight, rocket.fuelChoice);
+                
+                cout << rocket.flowRate << endl;
+
                 rocket.thrust = rocket.ThrustFunc(rocket.fuelChoice, rocket.iradius, rocket.cheight, rocket.flowRate);
 
+                cout << rocket.thrust << endl;
 
                 //Saving data
 
