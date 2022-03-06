@@ -44,9 +44,9 @@ int main() {
         if (request == "setRocket"){
             while (request!="back")
             {
-                cout << "Enter one of those commands: addTank or back" << endl;
+                cout << "Enter one of those commands: addStage or back" << endl;
                 cin >> request;
-                if(request == "addTank") {
+                if(request == "addStage") {
 
                 //Tank
                 rocket.tankN = rocket.tankN + 1;
@@ -93,6 +93,12 @@ int main() {
                 rocket.oxidizerChoice = rocket.oxidizerChoiceFunc();
                 cout << "Set" << endl;
                 
+                //Engine
+                rocket.ethrust = rocket.engineThrust();
+                cout << "Set" << endl;
+
+
+                //Saving data
 
                 int i = rocket.tankN - 1;
                 rocket.tankWeights[i] = rocket.tankWeight;
@@ -105,6 +111,7 @@ int main() {
                 rocket.tankFuelChoices[i] = rocket.fuelChoice;
                 rocket.tankOxidizerChoices[i] = rocket.oxidizerChoice;
                 i = 0;
+
                 
                 }
 

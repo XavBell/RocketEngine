@@ -4,7 +4,8 @@ using namespace std;
 
 class RocketMain{
 public:
-	string name= "";
+
+	//Tanks variables
 	float tankHeight = 0.0f;
 	float tankInnerRadius = 0.0f;
 	float tankOuterRadius = 0.0f;
@@ -31,14 +32,15 @@ public:
 	int tankFuelChoices[10];
 	int tankOxidizerChoices[10];
 
+	//Engine variables
+	double eMass = 0;
+	double ethrust = 0;
 
-	string setName() {
-		string rname;
-		cout << "Enter a name for the Rocket" << endl;
-		cin >> rname;
-		return rname;
-	}
+	double eMasses[10];
+	double ethrusts[10];
 
+
+	//Functions for tanks
 	float setTankHeight() {
 		double theight;
 		cout << "Enter a height for the tank" << endl;
@@ -71,7 +73,7 @@ public:
 	float setMat() {
 		string a;
 		double choice;
-		cout << "Enter a material volumetric weight for the rocket: Type 1 for aluminium" << endl;
+		cout << "Enter a material volumetric weight for the tank: Type 1 for aluminium" << endl;
 		cin>>a;
 		if (a == "1") {
 			choice = 2699;
@@ -107,12 +109,84 @@ public:
 		return a;
 	}
 
-
 	float oxidizerChoiceFunc() {
 		int a;
 		cout << "Enter one of the following number to select your oxidizer: 1. LOX" << endl;
 		cin >> a;
 		return a;
+	}
+
+	//Functions for engines
+
+	double engineMass() {
+
+		string a;
+		double choice = 0;
+		cout << "Enter a material volumetric weight for the engine: Type 1 for aluminium" << endl;
+		cin >> a;
+		if (a == "1") {
+			choice = 2699;
+		}
+
+		double oradius;
+		cout << "Enter outer radius of chamber" << endl;
+		cin >> oradius;
+
+		double iradius;
+		cout << "Enter inner radius of chamber" << endl;
+		cin >> iradius;
+
+		double cheight;
+		cout << "Enter height of chamber" << endl;
+		cin >> cheight;
+
+		double ofradius;
+		cout << "Enter outer radius between chamber and nozzle" << endl;
+		cin >> ofradius;
+
+		double ifradius;
+		cout << "Enter inner radius between chamber and nozzle" << endl;
+		cin >> ifradius;
+
+		double isradius;
+		cout << "Enter inner radius between exterior and nozzle" << endl;
+		cin >> isradius;
+
+		double osradius;
+		cout << "Enter outer radius between exterior and nozzle" << endl;
+		cin >> osradius;
+
+		double nheight;
+		cout << "Enter nozzle's height" << endl;
+		cin >> nheight;
+
+
+		double chamberVolume;
+
+		double pi = 2 * acos(0.0);
+		double outerVolume = pi * pow(oradius, 2) * cheight;
+		double innerVolume = pi * pow(iradius, 2) * cheight;
+		chamberVolume = outerVolume - innerVolume;
+
+		double nozzleVolume;
+
+		double OuterVolume = nheight*(pi/3)*(pow(osradius, 2)+pow(ofradius, 2)+(osradius*ofradius));
+		double InnerVolume = nheight * (pi / 3) * (pow(isradius, 2) + pow(ifradius, 2) + (isradius * ifradius));
+		nozzleVolume = OuterVolume - InnerVolume;
+
+
+		double mass;
+
+		mass = (chamberVolume + nozzleVolume)*choice;
+
+		return mass;
+	}
+
+	double engineThrust() {
+		double thrust;
+		cout << "Enter thrust (N)" << endl;
+		cin >> thrust;
+		return thrust;
 	}
 
 };
