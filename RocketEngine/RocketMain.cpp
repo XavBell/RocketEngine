@@ -35,6 +35,25 @@ public:
 	//Engine variables
 	double eMass = 0;
 	double ethrust = 0;
+	double fuelMolecularMass = 0;
+	double throatPressure = 0;
+	double flowRate = 0;
+	double thrust = 0;
+
+	//Chamber variables
+	double oradius = 0;
+	double iradius = 0;
+	double cheight = 0;
+
+	//Throat variables
+	double ofradius = 0;
+	double ifradius = 0;
+	double osradius = 0;
+	double isradius = 0;
+	double theight = 0;
+	double nheight;
+
+	const double primeR = 8.314;
 
 	double eMasses[10];
 	double ethrusts[10];
@@ -117,8 +136,74 @@ public:
 	}
 
 	//Functions for engines
+	
+	double engineOuterChamberRadius() {
+		double oradius;
+		cout << "Enter outer radius of chamber" << endl;
+		cin >> oradius;
+		return oradius;
+	}
 
-	double engineMass() {
+	double engineInnerChamberRadius() {
+		double iradius;
+		cout << "Enter outer radius of chamber" << endl;
+		cin >> iradius;
+		return iradius;
+	}
+
+	double engineChamberHeight() {
+		double cheight;
+		cout << "Enter height of chamber" << endl;
+		cin >> cheight;
+		return cheight;
+	}
+
+	double throatOuterFirstRadius() {
+		double ofradius;
+		cout << "Enter outer radius between chamber and nozzle" << endl;
+		cin >> ofradius;
+		return ofradius;
+	}
+
+	double throatInnerFirstRadius() {
+		double ifradius;
+		cout << "Enter inner radius between chamber and nozzle" << endl;
+		cin >> ifradius;
+		return ifradius;
+	}
+
+	double throatInnerSecondRadius() {
+		double isradius;
+		cout << "Enter inner radius between exterior and nozzle" << endl;
+		cin >> isradius;
+		return isradius;
+	}
+
+	double throatOuterSecondRadius() {
+		double osradius;
+		cout << "Enter outer radius between exterior and nozzle" << endl;
+		cin >> osradius;
+		return osradius;
+	}
+
+	double nozzleHeight() {
+		double nheight;
+		cout << "Enter nozzle's height" << endl;
+		cin >> nheight;
+		return nheight;
+
+	}
+
+	double throatHeight() {
+		double theight;
+		cout << "Enter nozzle's height" << endl;
+		cin >> theight;
+		return theight;
+
+	}
+
+
+	double engineMass(double oradius, double iradius, double ofradius, double ifradius, double osradius, double isradius,double nheight, double cheight) {
 
 		string a;
 		double choice = 0;
@@ -127,38 +212,6 @@ public:
 		if (a == "1") {
 			choice = 2699;
 		}
-
-		double oradius;
-		cout << "Enter outer radius of chamber" << endl;
-		cin >> oradius;
-
-		double iradius;
-		cout << "Enter inner radius of chamber" << endl;
-		cin >> iradius;
-
-		double cheight;
-		cout << "Enter height of chamber" << endl;
-		cin >> cheight;
-
-		double ofradius;
-		cout << "Enter outer radius between chamber and nozzle" << endl;
-		cin >> ofradius;
-
-		double ifradius;
-		cout << "Enter inner radius between chamber and nozzle" << endl;
-		cin >> ifradius;
-
-		double isradius;
-		cout << "Enter inner radius between exterior and nozzle" << endl;
-		cin >> isradius;
-
-		double osradius;
-		cout << "Enter outer radius between exterior and nozzle" << endl;
-		cin >> osradius;
-
-		double nheight;
-		cout << "Enter nozzle's height" << endl;
-		cin >> nheight;
 
 
 		double chamberVolume;
@@ -182,11 +235,59 @@ public:
 		return mass;
 	}
 
-	double engineThrust() {
-		double thrust;
-		cout << "Enter thrust (N)" << endl;
-		cin >> thrust;
+	double flowRateFunc(double ifradius, double iradius, double theight, int propellantChoice) {
+		double flowRate;
+		double throatArea;
+		double throatVolume;
+		double HeatConst = 0;
+		double chamberTemp = 0;
+		double molarMass = 0;
+		double throatSpeed;
+		double usedMass = 0;
+
+		if (propellantChoice == 1) {
+			HeatConst = 1.24;
+			chamberTemp = 3670;
+			molarMass = 23.30;
+			usedMass = 23.30 / 8314.3;
+
+		}
+
+		double pi = 2 * acos(0.0);
+		throatVolume = theight * (pi / 3) * (pow(ifradius, 2) + pow(iradius, 2) + (ifradius * iradius));
+		throatArea = ((2 * iradius + 2 * ifradius) * theight) / 2;
+		throatSpeed = pow(((2*HeatConst)/HeatConst+1)*usedMass*chamberTemp,(1/2));
+
+
+		flowRate = (throatArea*throatSpeed)/throatVolume;
+		return flowRate;
+	}
+
+
+	double ThrustFunc(int propellantChoice, double iradius, double cheight, double flowRate) {
+		double HeatConst = 0;
+		double chamberTemp = 0;
+		double molarMass = 0;
+		double usedMass = 0;
+		double exhaustVelocity = 0;
+		double chamberPressure = 0;
+		double thrust = 0;
+
+		if (propellantChoice == 1) {
+			HeatConst = 1.24;
+			chamberTemp = 3670;
+			molarMass = 23.30;
+			usedMass = 23.30 / 8314.3;
+		}
+
+		double pi = 2 * acos(0.0);
+		chamberPressure = (usedMass*chamberTemp)/(pi * pow(iradius, 2) * cheight);
+
+		exhaustVelocity = pow(((2*HeatConst)/HeatConst-1)*usedMass*chamberTemp*(1-pow(101.3/chamberPressure, (HeatConst-1)/HeatConst)), (1^2));
+		thrust = flowRate * exhaustVelocity;
+
 		return thrust;
+		
 	}
 
 };

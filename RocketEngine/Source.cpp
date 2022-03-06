@@ -94,8 +94,18 @@ int main() {
                 cout << "Set" << endl;
                 
                 //Engine
-                rocket.ethrust = rocket.engineThrust();
-                cout << "Set" << endl;
+                rocket.oradius = rocket.engineOuterChamberRadius();
+                rocket.iradius = rocket.engineInnerChamberRadius();
+                rocket.cheight = rocket.engineChamberHeight();
+                rocket.ofradius = rocket.throatOuterFirstRadius();
+                rocket.ifradius = rocket.throatInnerFirstRadius();
+                rocket.isradius = rocket.throatInnerSecondRadius();
+                rocket.osradius = rocket.throatOuterSecondRadius();
+                rocket.nheight = rocket.nozzleHeight();
+                rocket.theight = rocket.throatHeight();
+                rocket.eMass = rocket.engineMass(rocket.oradius, rocket.iradius, rocket.ofradius, rocket.ifradius, rocket.osradius, rocket.isradius, rocket.nheight, rocket.cheight);
+                rocket.flowRate = rocket.flowRateFunc(rocket.ifradius, rocket.iradius, rocket.theight, rocket.fuelChoice);
+                rocket.thrust = rocket.ThrustFunc(rocket.fuelChoice, rocket.iradius, rocket.cheight, rocket.flowRate);
 
 
                 //Saving data
