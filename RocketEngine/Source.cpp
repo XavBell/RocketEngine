@@ -104,16 +104,9 @@ int main() {
                 rocket.nheight = rocket.nozzleHeight();
                 rocket.theight = rocket.throatHeight();
                 rocket.eMass = rocket.engineMass(rocket.oradius, rocket.iradius, rocket.ofradius, rocket.ifradius, rocket.osradius, rocket.isradius, rocket.nheight, rocket.cheight);
-                
-                cout << rocket.eMass << endl;
+                rocket.eThrust = rocket.engineThrustFunc();
+                rocket.massFlowRate = rocket.engineMassFlowRateFunc();
 
-                rocket.flowRate = rocket.flowRateFunc(rocket.ifradius, rocket.iradius, rocket.theight, rocket.fuelChoice);
-                
-                cout << rocket.flowRate << endl;
-
-                rocket.thrust = rocket.ThrustFunc(rocket.fuelChoice, rocket.iradius, rocket.cheight, rocket.flowRate);
-
-                cout << rocket.thrust << endl;
 
                 //Saving data
 
@@ -127,6 +120,9 @@ int main() {
                 rocket.tankOxidizerVolumes[i] = rocket.tankOxidizerVolume;
                 rocket.tankFuelChoices[i] = rocket.fuelChoice;
                 rocket.tankOxidizerChoices[i] = rocket.oxidizerChoice;
+                rocket.eMasses[i] = rocket.eMass;
+                rocket.ethrusts[i] = rocket.eThrust;
+                rocket.eRates[i] = rocket.massFlowRate;
                 i = 0;
 
                 

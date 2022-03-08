@@ -34,11 +34,8 @@ public:
 
 	//Engine variables
 	double eMass = 0;
-	double ethrust = 0;
-	double fuelMolecularMass = 0;
-	double throatPressure = 0;
-	double flowRate = 0;
-	double thrust = 0;
+	double eThrust = 0;
+	double massFlowRate = 0;
 
 	//Chamber variables
 	double oradius = 0;
@@ -51,12 +48,11 @@ public:
 	double osradius = 0;
 	double isradius = 0;
 	double theight = 0;
-	double nheight;
-
-	const double primeR = 8.314;
+	double nheight = 0;
 
 	double eMasses[10];
 	double ethrusts[10];
+	double eRates[10];
 
 
 	//Functions for tanks
@@ -202,7 +198,6 @@ public:
 
 	}
 
-
 	double engineMass(double oradius, double iradius, double ofradius, double ifradius, double osradius, double isradius,double nheight, double cheight) {
 
 		string a;
@@ -237,59 +232,19 @@ public:
 		return mass;
 	}
 
-	double flowRateFunc(double ifradius, double iradius, double theight, int propellantChoice) {
-		double flowRate;
-		double throatArea;
-		double throatVolume;
-		double HeatConst = 0;
-		double chamberTemp = 0;
-		double molarMass = 0;
-		double throatSpeed;
-		double usedMass = 0;
-
-		if (propellantChoice == 1) {
-			HeatConst = 1.24;
-			chamberTemp = 3670;
-			molarMass = 23.30;
-			usedMass = 23.30 / 8314.3;
-
-		}
-
-		double pi = 2 * acos(0.0);
-		throatVolume = theight * (pi / 3) * (pow(ifradius, 2) + pow(iradius, 2) + (ifradius * iradius));
-		throatArea = ((2 * iradius + 2 * ifradius) * theight) / 2;
-		throatSpeed = pow(((2*HeatConst)/HeatConst+1)*usedMass*chamberTemp,(1/2));
-
-
-		flowRate = (throatArea*throatSpeed)/throatVolume;
-		return flowRate;
-	}
-
-
-	double ThrustFunc(int propellantChoice, double iradius, double cheight, double flowRate) {
-		double HeatConst = 0;
-		double chamberTemp = 0;
-		double molarMass = 0;
-		double usedMass = 0;
-		double exhaustVelocity = 0;
-		double chamberPressure = 0;
-		double thrust = 0;
-
-		if (propellantChoice == 1) {
-			HeatConst = 1.24;
-			chamberTemp = 3670;
-			molarMass = 23.30;
-			usedMass = 23.30 / 8314.3;
-		}
-
-		double pi = 2 * acos(0.0);
-		chamberPressure = (usedMass*chamberTemp)/(pi * pow(iradius, 2) * cheight);
-
-		exhaustVelocity = pow(((2*HeatConst)/HeatConst-1)*usedMass*chamberTemp*(1-pow(101.3/chamberPressure, (HeatConst-1)/HeatConst)), (1^2));
-		thrust = flowRate * exhaustVelocity;
-
+	double engineThrustFunc() {
+		double thrust;
+		cout << "Enter engine thrust" << endl;
+		cin >> thrust;
 		return thrust;
-		
+
 	}
 
+	double engineMassFlowRateFunc() {
+		double rate;
+		cout << "Enter engine mass flow rate" << endl;
+		cin >> rate;
+		return rate;
+
+	}
 };
