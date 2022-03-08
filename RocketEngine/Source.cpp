@@ -109,7 +109,6 @@ int main() {
 
 
                 //Saving data
-
                 int i = rocket.tankN - 1;
                 rocket.tankWeights[i] = rocket.tankWeight;
                 rocket.tankHeights[i] = rocket.tankHeight;

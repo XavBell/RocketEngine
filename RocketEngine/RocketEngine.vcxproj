@@ -146,14 +146,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Documents\Opengl\glad.c" />
-    <ClCompile Include="RocketEngine.cpp" />
+    <ClCompile Include="FlightSimulation.cpp" />
     <ClCompile Include="RocketMain.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FuelOxidizer.h" />
-    <ClInclude Include="RocketEngine.h" />
-    <ClInclude Include="RocketMain.h" />
     <ClInclude Include="Source.h" />
   </ItemGroup>
   <ItemGroup>
