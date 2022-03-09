@@ -2,6 +2,7 @@
 using namespace std;
 #include <math.h>
 
+#pragma once
 class RocketMain{
 public:
 

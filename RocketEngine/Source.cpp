@@ -9,6 +9,7 @@
 #include <strsafe.h>
 #include "Source.h"
 #include "RocketMain.cpp"
+#include "FlightSimulation.cpp"
 
 
 using namespace std;
@@ -150,6 +151,11 @@ int main() {
                         cout << rocket.tankOuterRadiuses[i] << endl;
                         cout << "Tank volume for propellant of this tank is: ";
                         cout << rocket.tankPropellantVolumes[i]<<endl;
+                    }
+
+                    if(request == "launch") {
+                        Simulation sim;
+                        sim.launch(rocket.ethrusts[0], rocket.tankWeights[0], rocket.eMasses[0], rocket.tankFuelVolumes[0], rocket.tankOxidizerVolumes[0], rocket.tankFuelChoices[0], rocket.tankOxidizerChoices[0]);
                     }
 
                     if(request == "save") {
