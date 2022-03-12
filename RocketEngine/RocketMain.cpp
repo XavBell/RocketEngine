@@ -59,7 +59,7 @@ public:
 	//Functions for tanks
 	float setTankHeight() {
 		double theight;
-		cout << "Enter a height for the tank" << endl;
+		cout << "Enter a height for the tank (m)" << endl;
 		cin >> theight;
 		return theight;
 	}
@@ -136,56 +136,56 @@ public:
 	
 	double engineOuterChamberRadius() {
 		double oradius;
-		cout << "Enter outer radius of chamber" << endl;
+		cout << "Enter outer radius of chamber (m)" << endl;
 		cin >> oradius;
 		return oradius;
 	}
 
 	double engineInnerChamberRadius() {
 		double iradius;
-		cout << "Enter inner radius of chamber" << endl;
+		cout << "Enter inner radius of chamber (m)" << endl;
 		cin >> iradius;
 		return iradius;
 	}
 
 	double engineChamberHeight() {
 		double cheight;
-		cout << "Enter height of chamber" << endl;
+		cout << "Enter height of chamber (m)" << endl;
 		cin >> cheight;
 		return cheight;
 	}
 
 	double throatOuterFirstRadius() {
 		double ofradius;
-		cout << "Enter outer radius between chamber and nozzle" << endl;
+		cout << "Enter outer radius between chamber and nozzle (m)" << endl;
 		cin >> ofradius;
 		return ofradius;
 	}
 
 	double throatInnerFirstRadius() {
 		double ifradius;
-		cout << "Enter inner radius between chamber and nozzle" << endl;
+		cout << "Enter inner radius between chamber and nozzle (m)" << endl;
 		cin >> ifradius;
 		return ifradius;
 	}
 
 	double throatInnerSecondRadius() {
 		double isradius;
-		cout << "Enter inner radius between exterior and nozzle" << endl;
+		cout << "Enter inner radius between exterior and nozzle (m)" << endl;
 		cin >> isradius;
 		return isradius;
 	}
 
 	double throatOuterSecondRadius() {
 		double osradius;
-		cout << "Enter outer radius between exterior and nozzle" << endl;
+		cout << "Enter outer radius between exterior and nozzle (m)" << endl;
 		cin >> osradius;
 		return osradius;
 	}
 
 	double nozzleHeight() {
 		double nheight;
-		cout << "Enter nozzle's height" << endl;
+		cout << "Enter nozzle's height (m)" << endl;
 		cin >> nheight;
 		return nheight;
 
@@ -193,7 +193,7 @@ public:
 
 	double throatHeight() {
 		double theight;
-		cout << "Enter throat's height" << endl;
+		cout << "Enter throat's height (m)" << endl;
 		cin >> theight;
 		return theight;
 
@@ -220,9 +220,9 @@ public:
 		double nozzleVolume;
 
 		double OuterVolume = nheight*(pi/3)*(pow(osradius, 2)+pow(ofradius, 2)+(osradius*ofradius));
-		cout << "Nozzle outer Volume: " << OuterVolume << endl;
+		cout << "Nozzle outer Volume: " << OuterVolume << "m^3" << endl;
 		double InnerVolume = nheight * (pi / 3) * (pow(isradius, 2) + pow(ifradius, 2) + (isradius * ifradius));
-		cout << "Nozzle inner Volume: " << InnerVolume << endl;
+		cout << "Nozzle inner Volume: " << InnerVolume << "m^3" << endl;
 		nozzleVolume = OuterVolume - InnerVolume;
 
 
@@ -235,7 +235,7 @@ public:
 
 	double engineThrustFunc() {
 		double thrust;
-		cout << "Enter engine thrust" << endl;
+		cout << "Enter engine thrust (N)" << endl;
 		cin >> thrust;
 		return thrust;
 
@@ -243,7 +243,7 @@ public:
 
 	double engineMassFlowRateFunc() {
 		double rate;
-		cout << "Enter engine mass flow rate" << endl;
+		cout << "Enter engine mass flow rate (kg/s)" << endl;
 		cin >> rate;
 		return rate;
 

@@ -56,12 +56,12 @@ int main() {
                 cout << "Your tank height is ";
                 cout << rocket.tankHeight << endl;
 
-                cout << "Enter an outer radius for the tank" << endl;
+                cout << "Enter an outer radius for the tank (m)" << endl;
                 rocket.tankOuterRadius = rocket.setTankRadius();
                 cout << "Your tank outer radius is ";
                 cout << rocket.tankOuterRadius << endl;
 
-                cout << "Enter an inner radius for the tank" << endl;
+                cout << "Enter an inner radius for the tank (m)" << endl;
                 rocket.tankInnerRadius = rocket.setTankRadius();
                 cout << "Your tank inner radius is ";
                 cout << rocket.tankInnerRadius << endl;

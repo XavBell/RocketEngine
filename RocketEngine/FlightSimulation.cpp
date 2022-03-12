@@ -77,7 +77,7 @@ public:
 		cout << burnTime << " s"<< endl;
 
 		double accy = 9.8 * ((thrust/weight)-1);
-		cout << "Acceleration on Y for thrust part of the flight is: " << accy << endl;
+		cout << "Acceleration on Y for thrust part of the flight is: " << accy << "m/s^2" << endl;
 
 
 		double vy = 9.8 *specificImpulse*log(weight/weightAfterFlight)-(9.8*burnTime);
