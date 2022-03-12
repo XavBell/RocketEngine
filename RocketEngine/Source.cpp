@@ -155,7 +155,7 @@ int main() {
 
                     if(request == "launch") {
                         Simulation sim;
-                        sim.launch(rocket.ethrusts[0], rocket.tankWeights[0], rocket.eMasses[0], rocket.tankFuelVolumes[0], rocket.tankOxidizerVolumes[0], rocket.tankFuelChoices[0], rocket.tankOxidizerChoices[0]);
+                        sim.launch(rocket.ethrusts[0], rocket.tankWeights[0], rocket.eMasses[0], rocket.tankFuelVolumes[0], rocket.tankOxidizerVolumes[0], rocket.tankFuelChoices[0], rocket.tankOxidizerChoices[0], rocket.eRates[0]);
                     }
 
                     if(request == "save") {
