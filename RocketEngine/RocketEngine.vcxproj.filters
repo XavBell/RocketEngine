@@ -21,9 +21,6 @@
     <ClCompile Include="RocketMain.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\Opengl\glad.c">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="FlightSimulation.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>

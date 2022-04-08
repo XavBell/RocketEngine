@@ -1,5 +1,3 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -133,7 +131,7 @@ int main() {
 
         if (request == "checkRocket") {
                 while(request != "back") {
-                    cout << "Enter one of those commands or type back: getTankInfo, save, load" << endl;
+                    cout << "Enter one of those commands or type back: getTankInfo, launch, save, load, writeStats" << endl;
                     cin >> request;
                     if(request == "getTankInfo") {
                         int tankCheck;
@@ -190,6 +188,26 @@ int main() {
                             }
                         }
                     
+                    }
+
+                    if (request == "writeStats") {
+                        string filename;
+                        cout << "Enter a filename" << endl;
+                        cin >> filename;
+                        filename = filename + "stats.txt";
+                        ofstream file;
+
+                        file.open(filename, ios::app);
+                        int i = rocket.tankN - 1;
+                        if (file.is_open()) {
+                            file << "Tank weight: " << rocket.tankWeights[i] << endl;
+                            file << "Tank height: " << rocket.tankHeights[i] << endl;
+                            file << "Tank outer radius: " << rocket.tankOuterRadiuses[i] << endl;
+                            file << "Stage thrust: " << rocket.ethrusts[i] << endl;
+                            file.close();
+                        }
+                        else cout << "Can't open file!" << endl;
+
                     }
                 }
             }
