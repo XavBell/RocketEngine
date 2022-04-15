@@ -71,18 +71,33 @@ public:
 			specificImpulse = (thrust * burnTime) /(usableFuel+oxidizerWeight);
 			weightAfterFlight = weight - (usableFuel + oxidizerWeight);
 		}
+		double angleofLaunch;
 
-		cout << burnTime << " s"<< endl;
+		cout << "Enter angle of launch";
+		cin >> angleofLaunch;
 
-		double accy = 9.8 * ((thrust/weight)-1);
+		double accy = 9.8 * ((thrust/weight)*sin(angleofLaunch) - 1);
 		cout << "Acceleration on Y for thrust part of the flight is: " << accy << "m/s^2" << endl;
 
+		double accx = 9.8 * ((thrust / weight) * cos(angleofLaunch));
+		cout << "Acceleration on X for thrust part of the flight is: " << accy << "m/s^2" << endl;
 
-		double vy = 9.8 *specificImpulse*log(weight/weightAfterFlight)-(9.8*burnTime);
-		cout << vy << " m/s" << endl;
 
-		double apogee = 0.5 * pow(vy, 2) / 9.8;
-		cout << apogee << " m" << endl;
+		double vy = (9.8 *specificImpulse*log(weight/weightAfterFlight)*sin(angleofLaunch)) - (9.8 * burnTime);
+		cout << vy << " m/s on Y axis" << endl;
+
+		double vx = (9.8 * specificImpulse * log(weight / weightAfterFlight)*cos(angleofLaunch));
+		cout << vy << " m/s on X axis" << endl;
+
+
+		//Position at burnout
+		double yp = 9.8 * specificImpulse * (1 - (log(weight / weightAfterFlight) / (weight / weightAfterFlight - 1))) * sin(angleofLaunch) - (0.5*9.8*pow(burnTime, 2));
+		double xp = 9.8 * specificImpulse * (1 - (log(weight / weightAfterFlight) / (weight / weightAfterFlight - 1))) * cos(angleofLaunch);
+
+		//Apogee
+		double ypu = 0.5 * pow(vy, 2) / 9.8;
+		double apogee = yp + ypu;
+		
 	}
 
 };
