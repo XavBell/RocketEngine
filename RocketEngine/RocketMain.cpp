@@ -7,15 +7,15 @@ class RocketMain{
 public:
 
 	//Tanks variables
-	float tankHeight = 0.0f;
-	float tankInnerRadius = 0.0f;
-	float tankOuterRadius = 0.0f;
-	float tankEmptyVolume = 0.0f;
-	float tankPropellantVolume = 0.0f;
-	float tankMat = 0.0f;
-	float tankWeight = 0.0f;
-	float tankFuelVolume = 0.0f;
-	float tankOxidizerVolume = 0.0f;
+	double tankHeight = 0.0;
+	double tankInnerRadius = 0.0;
+	double tankOuterRadius = 0.0;
+	double tankEmptyVolume = 0.0;
+	double tankPropellantVolume = 0.0;
+	double tankMat = 0.0;
+	double tankWeight = 0.0;
+	double tankFuelVolume = 0.0;
+	double tankOxidizerVolume = 0.0;
 	int fuelChoice = 0;
 	int oxidizerChoice = 0;
 	int tankN = 0;
@@ -57,20 +57,20 @@ public:
 
 
 	//Functions for tanks
-	float setTankHeight() {
+	double setTankHeight() {
 		double theight;
 		cout << "Enter a height for the tank (m)" << endl;
 		cin >> theight;
 		return theight;
 	}
 
-	float setTankRadius() {
+	double setTankRadius() {
 		double tradius;
 		cin >> tradius;
 		return tradius;
 	}
 
-	float tankEmptyVolumeFunc(float tOradius, float tIradius, float theight) {
+	double tankEmptyVolumeFunc(float tOradius, float tIradius, float theight) {
 		double tankEmptyVolume;
 		double pi = 2 * acos(0.0);
 		float outerVolume = pi * pow(tOradius, 2) * theight;
@@ -79,14 +79,14 @@ public:
 		return tankEmptyVolume;
 	}
 
-	float tankPropellantVolumeFunc(float tOradius, float tIradius, float theight) {
+	double tankPropellantVolumeFunc(float tOradius, float tIradius, float theight) {
 		double tankVolume;
 		double pi = 2 * acos(0.0);
 		tankPropellantVolume = pi * pow(tIradius, 2) * theight;
 		return tankPropellantVolume;
 	}
 
-	float setMat() {
+	double setMat() {
 		string a;
 		double choice;
 		cout << "Enter a material volumetric weight for the tank: Type 1 for aluminium" << endl;
@@ -97,20 +97,20 @@ public:
 		}
 	}
 
-	float tankWeightFunc(float tVolume, float tMaterial) {
+	double tankWeightFunc(double tVolume, double tMaterial) {
 		double tWeight;
 		tWeight = tVolume * tMaterial;
 		return tWeight;
 	}
 
-	float tankFuelVolumeFunc(float tVolume) {
+	double tankFuelVolumeFunc(double tVolume) {
 		double tankFuelVolume;
 		cout << "Enter volume designed to propellant, max: " << tVolume << endl;
 		cin >> tankFuelVolume;
 		return tankFuelVolume;
 	}
 
-	float tankOxidizerVolumeFunc(float tVolume, float fVolume) {
+	double tankOxidizerVolumeFunc(double tVolume, double fVolume) {
 		double tankFuelVolume = fVolume;
 		double tankOxidizerVolume;
 		cout << "Enter a volume designed to oxidizer max: " << tVolume - tankFuelVolume << endl;
