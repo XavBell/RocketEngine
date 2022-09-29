@@ -85,7 +85,7 @@ public:
 		double radAngle = angleofLaunch * (pi / 180);
 
 		double sinAngle = sin(radAngle) * (180/pi);
-		double cosAngle = cos(radAngle) * (180 / pi);
+		double cosAngle = cos(radAngle) * (180/pi);
 		
 		double accy = 9.8 * ((thrust/weight)*sinAngle - 1);
 		cout << "Acceleration on Y for thrust part of the flight is: " << accy << "m/s^2" << endl;
