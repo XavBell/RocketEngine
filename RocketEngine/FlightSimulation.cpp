@@ -75,7 +75,7 @@ public:
 			weightAfterFlight = weight - (usableFuel + oxidizerWeight);
 		}
 
-		double pi = 2 * acos(0.0);
+		double pi = M_PI;
 
 		double angleofLaunch;
 

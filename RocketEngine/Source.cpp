@@ -51,6 +51,7 @@ int main() {
                 rocket.tankN = rocket.tankN + 1;
 
                 rocket.tankHeight = rocket.setTankHeight();
+                //Edit cout
                 cout << "Your tank height is ";
                 cout << rocket.tankHeight << endl;
 
